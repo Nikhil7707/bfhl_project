@@ -1,6 +1,8 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/bfhl', methods=['POST'])
 def process_data():
@@ -11,18 +13,18 @@ def process_data():
 
     response = {
         "is_success": True,
-        "user_id": "john_doe_17091999",
-        "email": "john@xyz.com",
-        "roll_number": "ABCD123",
+        "user_id": "your_name_ddmmyyyy",
+        "email": "your_college_email",
+        "roll_number": "your_roll_number",
         "numbers": numbers,
         "alphabets": alphabets,
         "highest_alphabet": highest_alphabet
     }
-    return jsonify(response)
+    return jsonify(response), 200
 
 @app.route('/bfhl', methods=['GET'])
 def get_code():
-    return jsonify({"operation_code": 1})
+    return jsonify({"operation_code": 1}), 200
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=10000, debug=True)
